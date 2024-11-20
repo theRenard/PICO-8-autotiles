@@ -1,22 +1,49 @@
+local e = nil
+local r = 4
+local w = 5
+local f = 7
+local o = 12
+local c = 8
+local e = 9
+local n = nil
+local a = 'all'
+
+-- do this programmatically
+directions = {}
+directions[1] = { { 0, 0 } }
+directions[3] = { { -1, -1 }, { 0, -1 }, { 1, -1 }, { -1, 0 }, { 0, 0 }, { 1, 0 }, { -1, 1 }, { 0, 1 }, { 1, 1 } }
+
 rules = {
-  { 0b00000000, 1 },
-
-  { 0b01000000, 49 },
-  { 0b00010000, 4 },
-  { 0b00001000, 2 },
-  { 0b00000010, 17 },
-
-  { 0b01010000, 52 },
-  { 0b01001000, 50 },
-  { 0b01000010, 33 },
-  { 0b00011000, 3 },
-  { 0b00010010, 20 },
-  { 0b00001010, 18 },
-
-  { 0b01011000, 51 },
-  { 0b01010010, 36 },
-  { 0b01001010, 34 },
-  { 0b00011010, 19 },
-
-  { 0b01011010, 35 }
+  floor = {
+    highlight = true,
+    active = true,
+    chance = 0.3,
+    sprites = { 12 },
+    size = 1,
+    pattern = {
+      a,
+    }
+  },
+  plants = {
+    highlight = true,
+    active = true,
+    chance = 1,
+    sprites = { 1 },
+    size = 3,
+    pattern = {
+      a, f, a,
+      a, a, a,
+      a, a, a
+    }
+  },
+  -- walls = {
+  --   highlight = true,
+  --   active = true,
+  --   chance = 1,
+  --   sprites = { 1 },
+  --   size = 1,
+  --   pattern = {
+  --     w
+  --   }
+  -- }
 }

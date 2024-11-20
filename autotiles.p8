@@ -6,8 +6,8 @@ __lua__
 
 #include lua/debug.lua
 #include lua/utilities.lua
+#include lua/rules.lua
 #include lua/autotiles.lua
-#include lua/tileset.lua
 
 
 __gfx__
