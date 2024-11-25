@@ -1,29 +1,12 @@
-cls(3)
+cls()
 
 -- Constants
-local drawStep = false
 local dungeonWidth = 128
 local dungeonHeight = 128
 
 -- Tiles
-local emptyTile = nil
-local rockTile = 4
-local wallTile = 5
-local floorTile = 7
-local openDoorTile = 12
-local closedDoorTile = 8
-local exitTile = 9
-
-local dungeon = create2DArr(dungeonWidth, dungeonHeight, rockTile)
-local ruledDungeon = create2DArr(dungeonWidth, dungeonHeight, rockTile)
-
-function addRandomPoints()
-    for i = 1, 50 do
-        local x = intRnd(dungeonWidth) + 1
-        local y = intRnd(dungeonHeight) + 1
-        dungeon[x][y] = floorTile
-    end
-end
+local dungeon = create2DArr(dungeonWidth, dungeonHeight, 0)
+local ruledDungeon = create2DArr(dungeonWidth, dungeonHeight, 0)
 
 function setTiles()
     forEachArr2D(
@@ -38,28 +21,38 @@ function isInBounds(x, y)
 end
 
 function setTileAt(x, y)
-    for _, rule in pairs(rules) do
-        if rule.active then
-            local match = true
-            for i = 1, #directions[rule.size] do
-                local pos = directions[rule.size][i]
+    for rule in all(rules) do
+        local active = rule.active or true
+        if active then
+            local match = false
+            local size = #rule.pattern == 1 and 1 or 3
+            for i = 1, #directions[size] do
+                local pos = directions[size][i]
                 local dx = pos[1]
                 local dy = pos[2]
+                local tile = rule.pattern[i]
                 if isInBounds(x + dx, y + dy) then
-                    local tile = rule.pattern[i]
-                    if tile == 'all' then
+                    -- if the tile is 'all' then it will match any tile
+                    -- if the tile is a number then it will match that specific tile
+                    -- if the tile is a negative number then it will match any tile except that specific tile
+                    if tile == 'all' or (tile > 0 and dungeon[x + dx][y + dy] == tile) or (tile < 0 and dungeon[x + dx][y + dy] != -tile) then
                         match = true
-                    elseif dungeon[x + dx][y + dy] != tile then
+                    else
                         match = false
                         break
                     end
-                else
-                    match = false
-                    break
+                else -- if the tile is out of bounds then it will match only if the tile is 'all'
+                    if tile == 'all' then
+                        match = true
+                    else
+                        match = false
+                        break
+                    end
                 end
             end
             if match then
-                if rnd() < rule.chance then
+                local chance = rule.chance or 1
+                if rnd() < chance then
                     local sprite = getRandomItem(rule.sprites)
                     ruledDungeon[x][y] = sprite
                 end
@@ -68,19 +61,57 @@ function setTileAt(x, y)
     end
 end
 
-function drawDungeon()
+function readPixelMap(startX, startY, endX, endY)
+    -- read pixels from sprite sheet
+    -- from y=64 to 81 and from x=0 to 32
+    for x = startX, endX do
+        for y = startY, endY do
+            local color = sget(x, y)
+            dungeon[x - startX + 1][y - startY + 1] = color
+        end
+    end
+end
+
+function drawMiniMap(dx, dy)
+    forEachArr2D(
+        dungeon, function(x, y)
+            local color = dungeon[x][y]
+            if color != nil and color != 0 then
+                pset(x - 1 + dx, y - 1 + dy, dungeon[x][y])
+            end
+        end
+    )
+end
+
+function getSprite(sprite)
+    -- sprite is a number that can have 'h' or 'v' in front of it
+    -- to indicate that it is a horizontally or vertically flipped sprite
+    local flip = ''
+    if sub(sprite, 1, 1) == 'h' then
+        flip = 'h'
+        sprite = sub(sprite, 2)
+    elseif sub(sprite, 1, 1) == 'v' then
+        flip = 'v'
+        sprite = sub(sprite, 2)
+    end
+    return sprite, flip
+
+end
+
+function createMap()
     forEachArr2D(
         ruledDungeon, function(x, y)
             if ruledDungeon[x][y] != nil then
-                pset(x - 1, y - 1, ruledDungeon[x][y])
+                mset(x - 1, y - 1, ruledDungeon[x][y])
             end
         end
     )
 end
 
 _init = function()
-    addRandomPoints()
+    readPixelMap(64, 0, 128, 32)
     setTiles()
+    createMap()
 end
 
 -- the coordinates of the upper left corner of the camera
@@ -97,14 +128,15 @@ function _update()
 end
 
 function _draw()
-    cls(3)
+    cls()
     -- set the camera to the current location
     camera(cam_x, cam_y)
 
     -- draw the entire map at (0, 0), allowing
     -- the camera and clipping region to decide
     -- what is shown
-    drawDungeon()
+    map(0, 0, 0, 0, 64, 64)
+    drawMiniMap(cam_x, cam_y)
 
     -- reset the camera then print the camera
     -- coordinates on screen
