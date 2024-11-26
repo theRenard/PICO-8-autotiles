@@ -10,6 +10,7 @@ local a = 'all'
 
 -- rule = {
 --   active = true,
+--   stopOnMatch = false,
 --   chance = 1,
 --   sprites = { n },
 --   pattern = { a, w, a, a, -w, a, a, a, a },
@@ -26,7 +27,7 @@ rules = {
       a, a, a
     }
   },
-  -- rocks
+  -- dirt
   {
     chance = 0.3,
     sprites = { 37 },
@@ -36,52 +37,20 @@ rules = {
       a, w, a
     }
   },
-  -- inner
+  -- jumps
   {
-    sprites = { 2, 3, 4, 5, 6, 7 },
-    pattern = {
-      w
-    }
-  },
-  -- top
-  {
-    sprites = { 21 },
+    sprites = { 34 },
+    stopOnMatch = true,
     pattern = {
       a, -w, a,
       a, w, a,
-      a, a, a
-    }
-  },
-  -- bottom
-  {
-    sprites = { 53 },
-    pattern = {
-      a, a, a,
-      a, w, a,
       a, -w, a
-    }
-  },
-  -- left side
-  {
-    sprites = { 36 },
-    pattern = {
-      a, a, a,
-      -w, w, a,
-      a, a, a
-    }
-  },
-  -- right side
-  {
-    sprites = { 39 },
-    pattern = {
-      a, a, a,
-      a, w, -w,
-      a, a, a
     }
   },
   -- top left corner
   {
     sprites = { 20 },
+    stopOnMatch = true,
     pattern = {
       a, -w, a,
       -w, w, a,
@@ -91,6 +60,7 @@ rules = {
   -- top right corner
   {
     sprites = { 23 },
+    stopOnMatch = true,
     pattern = {
       a, -w, a,
       a, w, -w,
@@ -100,6 +70,7 @@ rules = {
   -- bottom left corner
   {
     sprites = { 52 },
+    stopOnMatch = true,
     pattern = {
       a, a, a,
       -w, w, a,
@@ -109,11 +80,68 @@ rules = {
   -- bottom right corner
   {
     sprites = { 55 },
+    stopOnMatch = true,
     pattern = {
       a, a, a,
       a, w, -w,
       a, -w, a
     }
   },
-
+  -- top side
+  {
+    sprites = { 21 },
+    stopOnMatch = true,
+    pattern = {
+      a, -w, a,
+      a, w, a,
+      a, a, a
+    }
+  },
+  -- bottom side
+  {
+    sprites = { 53 },
+    stopOnMatch = true,
+    pattern = {
+      a, a, a,
+      a, w, a,
+      a, -w, a
+    }
+  },
+  -- left side
+  {
+    sprites = { 36 },
+    stopOnMatch = true,
+    pattern = {
+      a, a, a,
+      -w, w, a,
+      a, a, a
+    }
+  },
+  -- right side
+  {
+    sprites = { 39 },
+    stopOnMatch = true,
+    pattern = {
+      a, a, a,
+      a, w, -w,
+      a, a, a
+    }
+  },
+  -- inner
+  {
+    sprites = { 2, 3, 4, 5, 6, 7 },
+    stopOnMatch = true,
+    pattern = {
+      w
+    }
+  },
+  -- solo
+  {
+    sprites = { 33 },
+    pattern = {
+      -w, -w, -w,
+      -w, w, -w,
+      -w, -w, -w
+    }
+  },
 }

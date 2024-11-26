@@ -65,6 +65,10 @@ function setTileAt(x, y)
                     local sprite = getRandomItem(rule.sprites)
                     ruledDungeon[x][y] = sprite
                 end
+                -- if stopOnMatch is true then it will stop checking the other rules
+                if rule.stopOnMatch then
+                    break
+                end
             end
         end
     end
@@ -144,7 +148,7 @@ function _draw()
     -- the camera and clipping region to decide
     -- what is shown
     map(0, 0, 0, 0, 64, 64)
-    drawMiniMap(cam_x, cam_y)
+    -- drawMiniMap(cam_x, cam_y)
 
     -- reset the camera then print the camera
     -- coordinates on screen
