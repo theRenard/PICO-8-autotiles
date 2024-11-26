@@ -4,6 +4,11 @@ cls()
 local dungeonWidth = 128
 local dungeonHeight = 128
 
+-- do this programmatically
+directions = {}
+directions[1] = { { 0, 0 } }
+directions[3] = { { -1, -1 }, { 0, -1 }, { 1, -1 }, { -1, 0 }, { 0, 0 }, { 1, 0 }, { -1, 1 }, { 0, 1 }, { 1, 1 } }
+
 -- Tiles
 local dungeon = create2DArr(dungeonWidth, dungeonHeight, 0)
 local ruledDungeon = create2DArr(dungeonWidth, dungeonHeight, 0)
@@ -21,6 +26,9 @@ function isInBounds(x, y)
 end
 
 function setTileAt(x, y)
+    if dungeon[x][y] == 0 then
+        return
+    end
     for rule in all(rules) do
         local active = rule.active or true
         if active then
@@ -41,7 +49,8 @@ function setTileAt(x, y)
                         match = false
                         break
                     end
-                else -- if the tile is out of bounds then it will match only if the tile is 'all'
+                else
+                    -- if the tile is out of bounds then it will match only if the tile is 'all'
                     if tile == 'all' then
                         match = true
                     else
@@ -95,7 +104,6 @@ function getSprite(sprite)
         sprite = sub(sprite, 2)
     end
     return sprite, flip
-
 end
 
 function createMap()

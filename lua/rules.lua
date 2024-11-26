@@ -7,22 +7,18 @@ local c = 8
 local e = 9
 local a = 'all'
 
--- do this programmatically
-directions = {}
-directions[1] = { { 0, 0 } }
-directions[3] = { { -1, -1 }, { 0, -1 }, { 1, -1 }, { -1, 0 }, { 0, 0 }, { 1, 0 }, { -1, 1 }, { 0, 1 }, { 1, 1 } }
 
-rule = {
-  active = true,
-  chance = 1,
-  sprites = { n },
-  pattern = { a, w, a, a, -w, a, a, a, a },
-}
+-- rule = {
+--   active = true,
+--   chance = 1,
+--   sprites = { n },
+--   pattern = { a, w, a, a, -w, a, a, a, a },
+-- }
 
 rules = {
   -- plants
   {
-    chance = 0.5,
+    chance = 0.3,
     sprites = { 17, 19 },
     pattern = {
       a, w, a,
