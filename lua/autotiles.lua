@@ -1,39 +1,53 @@
 cls()
 
 -- Constants
-local dungeonWidth = 128
-local dungeonHeight = 128
+local levelWidth = 128
+local levelHeight = 128
 
 -- do this programmatically
-directions = {}
-directions[1] = { { 0, 0 } }
-directions[3] = { { -1, -1 }, { 0, -1 }, { 1, -1 }, { -1, 0 }, { 0, 0 }, { 1, 0 }, { -1, 1 }, { 0, 1 }, { 1, 1 } }
+directions = {
+    [1] = { { 0, 0 } },
+    [3] = {},
+    [5] = {}
+}
+
+for y = -1, 1 do
+    for x = -1, 1 do
+        add(directions[3], { x, y })
+    end
+end
+
+for y = -2, 2 do
+    for x = -2, 2 do
+        add(directions[5], { x, y })
+    end
+end
 
 -- Tiles
-local dungeon = create2DArr(dungeonWidth, dungeonHeight, 0)
-local ruledDungeon = create2DArr(dungeonWidth, dungeonHeight, 0)
+local level = create2DArr(levelWidth, levelHeight, 0)
+local ruledlevel = create2DArr(levelWidth, levelHeight, 0)
 
 function setTiles()
     forEachArr2D(
-        dungeon, function(x, y)
+        level, function(x, y)
             setTileAt(x, y)
         end
     )
 end
 
 function isInBounds(x, y)
-    return x <= dungeonWidth and y <= dungeonHeight and x > 0 and y > 0
+    return x <= levelWidth and y <= levelHeight and x > 0 and y > 0
 end
 
 function setTileAt(x, y)
-    if dungeon[x][y] == 0 then
+    if level[x][y] == 0 then
         return
     end
-    for rule in all(rules) do
+    for rule in all(streetRules) do
         local active = rule.active or true
         if active then
             local match = false
-            local size = #rule.pattern == 1 and 1 or 3
+            local size = ({[1] = 1, [9] = 3, [25] = 5})[#rule.pattern] or 1
             for i = 1, #directions[size] do
                 local pos = directions[size][i]
                 local dx = pos[1]
@@ -43,7 +57,7 @@ function setTileAt(x, y)
                     -- if the tile is 'all' then it will match any tile
                     -- if the tile is a number then it will match that specific tile
                     -- if the tile is a negative number then it will match any tile except that specific tile
-                    if tile == 'all' or (tile > 0 and dungeon[x + dx][y + dy] == tile) or (tile < 0 and dungeon[x + dx][y + dy] != -tile) then
+                    if tile == 'all' or (tile > 0 and level[x + dx][y + dy] == tile) or (tile < 0 and level[x + dx][y + dy] != -tile) then
                         match = true
                     else
                         match = false
@@ -63,7 +77,7 @@ function setTileAt(x, y)
                 local chance = rule.chance or 1
                 if rnd() < chance then
                     local sprite = getRandomItem(rule.sprites)
-                    ruledDungeon[x][y] = sprite
+                    ruledlevel[x][y] = sprite
                 end
                 -- if stopOnMatch is true then it will stop checking the other rules
                 if rule.stopOnMatch then
@@ -80,17 +94,17 @@ function readPixelMap(startX, startY, endX, endY)
     for x = startX, endX do
         for y = startY, endY do
             local color = sget(x, y)
-            dungeon[x - startX + 1][y - startY + 1] = color
+            level[x - startX + 1][y - startY + 1] = color
         end
     end
 end
 
 function drawMiniMap(dx, dy)
     forEachArr2D(
-        dungeon, function(x, y)
-            local color = dungeon[x][y]
+        level, function(x, y)
+            local color = level[x][y]
             if color != nil and color != 0 then
-                pset(x - 1 + dx, y - 1 + dy, dungeon[x][y])
+                pset(x - 1 + dx, y - 1 + dy, level[x][y])
             end
         end
     )
@@ -112,16 +126,17 @@ end
 
 function createMap()
     forEachArr2D(
-        ruledDungeon, function(x, y)
-            if ruledDungeon[x][y] != nil then
-                mset(x - 1, y - 1, ruledDungeon[x][y])
+        ruledlevel, function(x, y)
+            if ruledlevel[x][y] != nil then
+                mset(x - 1, y - 1, ruledlevel[x][y])
             end
         end
     )
 end
 
 _init = function()
-    readPixelMap(64, 0, 128, 32)
+    -- readPixelMap(64, 0, 128, 32) -- platform
+    readPixelMap(96, 32, 128, 72) -- street
     setTiles()
     createMap()
 end
