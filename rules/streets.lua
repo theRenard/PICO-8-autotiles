@@ -4,6 +4,40 @@ local w = -s -- wlkway
 local a = 'all'
 
 streetRules = {
+  -- 3x vertical crosswalk
+  {
+    block = {
+      { 69 },
+      { 85 },
+      { 101 },
+    },
+    chance = 0.4,
+    sprites = { 106 },
+    stopOnMatch = true,
+    pattern = {
+      a, w, w, w, a,
+      s, s, s, s, s,
+      s, s, s, s, s,
+      s, s, s, s, s,
+      a, w, w, w, a,
+    }
+  },
+  -- 3x horizontal crosswalk
+  {
+    block = {
+      { 112, 113, 114 },
+    },
+    chance = 0.4,
+    sprites = { 106 },
+    stopOnMatch = true,
+    pattern = {
+      a, s, s, s, a,
+      w, s, s, s, w,
+      w, s, s, s, w,
+      w, s, s, s, w,
+      a, s, s, s, a,
+    }
+  },
   -- top left corner
   {
     sprites = { 64 },
@@ -127,7 +161,7 @@ streetRules = {
   -- all
   {
     sprites = { 81, 118 },
-    stopOnMatch = true,
+    -- stopOnMatch = true,
     pattern = {
       s
     }

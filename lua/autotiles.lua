@@ -26,6 +26,7 @@ end
 -- Tiles
 local level = create2DArr(levelWidth, levelHeight, 0)
 local ruledlevel = create2DArr(levelWidth, levelHeight, 0)
+local skip = create2DArr(levelWidth, levelHeight, false)
 
 function setTiles()
     forEachArr2D(
@@ -40,7 +41,7 @@ function isInBounds(x, y)
 end
 
 function setTileAt(x, y)
-    if level[x][y] == 0 then
+    if level[x][y] == 0 or skip[x][y] then
         return
     end
     for rule in all(streetRules) do
@@ -76,12 +77,26 @@ function setTileAt(x, y)
             if match then
                 local chance = rule.chance or 1
                 if rnd() < chance then
-                    local sprite = getRandomItem(rule.sprites)
-                    ruledlevel[x][y] = sprite
-                end
-                -- if stopOnMatch is true then it will stop checking the other rules
-                if rule.stopOnMatch then
-                    break
+                    if rule.block then
+                        local blockHeight = #rule.block
+                        local blockWidth = #rule.block[1]
+                        local startX = x - flr(blockWidth / 2)
+                        local startY = y - flr(blockHeight / 2)
+                        for dy = 1, blockHeight do
+                            for dx = 1, blockWidth do
+                                ruledlevel[startX + dx - 1][startY + dy - 1] = rule.block[dy][dx]
+                                -- we don't want to check these tiles again
+                                skip[startX + dx - 1][startY + dy - 1] = true
+                            end
+                        end
+                    elseif rule.sprites then
+                        local sprite = getRandomItem(rule.sprites)
+                        ruledlevel[x][y] = sprite
+                    end
+                    if rule.stopOnMatch then
+                        -- if stopOnMatch is true then it will stop checking the other rules
+                        break
+                    end
                 end
             end
         end
@@ -110,26 +125,10 @@ function drawMiniMap(dx, dy)
     )
 end
 
-function getSprite(sprite)
-    -- sprite is a number that can have 'h' or 'v' in front of it
-    -- to indicate that it is a horizontally or vertically flipped sprite
-    local flip = ''
-    if sub(sprite, 1, 1) == 'h' then
-        flip = 'h'
-        sprite = sub(sprite, 2)
-    elseif sub(sprite, 1, 1) == 'v' then
-        flip = 'v'
-        sprite = sub(sprite, 2)
-    end
-    return sprite, flip
-end
-
 function createMap()
     forEachArr2D(
         ruledlevel, function(x, y)
-            if ruledlevel[x][y] != nil then
-                mset(x - 1, y - 1, ruledlevel[x][y])
-            end
+            mset(x - 1, y - 1, ruledlevel[x][y])
         end
     )
 end
