@@ -11,8 +11,8 @@ streetRules = {
       { 85 },
       { 101 },
     },
+    offsetY = -1,
     chance = 0.4,
-    sprites = { 106 },
     stopOnMatch = true,
     pattern = {
       a, w, w, w, a,
@@ -27,8 +27,8 @@ streetRules = {
     block = {
       { 112, 113, 114 },
     },
+    offsetX = -1,
     chance = 0.4,
-    sprites = { 106 },
     stopOnMatch = true,
     pattern = {
       a, s, s, s, a,

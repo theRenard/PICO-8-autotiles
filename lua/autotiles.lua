@@ -80,8 +80,10 @@ function setTileAt(x, y)
                     if rule.block then
                         local blockHeight = #rule.block
                         local blockWidth = #rule.block[1]
-                        local startX = x - flr(blockWidth / 2)
-                        local startY = y - flr(blockHeight / 2)
+                        local offX = rule.offsetX or 0
+                        local offY = rule.offsetY or 0
+                        local startX = x + offX
+                        local startY = y + offY
                         for dy = 1, blockHeight do
                             for dx = 1, blockWidth do
                                 ruledlevel[startX + dx - 1][startY + dy - 1] = rule.block[dy][dx]
