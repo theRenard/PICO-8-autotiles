@@ -12,7 +12,7 @@ streetRules = {
       { 101 },
     },
     offsetY = -1,
-    chance = 0.4,
+    chance = 0.2,
     stopOnMatch = true,
     pattern = {
       a, w, w, w, a,
@@ -20,6 +20,23 @@ streetRules = {
       s, s, s, s, s,
       s, s, s, s, s,
       a, w, w, w, a,
+    }
+  },
+  -- 2x vertical crosswalk
+  {
+    block = {
+      { 69 },
+      { 101 },
+    },
+    offsetY = -1,
+    chance = 0.2,
+    stopOnMatch = true,
+    pattern = {
+      a, w, w, w, a,
+      s, s, s, s, s,
+      s, s, s, s, s,
+      w, w, w, w, w,
+      a, a, a, a, a,
     }
   },
   -- 3x horizontal crosswalk
@@ -36,6 +53,22 @@ streetRules = {
       w, s, s, s, w,
       w, s, s, s, w,
       a, s, s, s, a,
+    }
+  },
+  -- 2x horizontal crosswalk
+  {
+    block = {
+      { 112, 114 },
+    },
+    offsetX = -1,
+    chance = 0.2,
+    stopOnMatch = true,
+    pattern = {
+      a, s, s, a, a,
+      w, s, s, w, a,
+      w, s, s, w, a,
+      w, s, s, w, a,
+      a, s, s, a, a,
     }
   },
   -- top left corner
