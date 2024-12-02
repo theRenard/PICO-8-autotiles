@@ -3,7 +3,7 @@ local s = 5  --street
 local w = -s -- wlkway
 local a = 'all'
 
-streetRules = {
+cityRules = {
   -- 3x vertical crosswalk
   {
     block = {
@@ -69,6 +69,28 @@ streetRules = {
       w, s, s, w, a,
       w, s, s, w, a,
       a, s, s, a, a,
+    }
+  },
+  -- vrtical parking place
+  {
+    sprites = { 119 },
+    chance = 0.1,
+    stopOnMatch = true,
+    pattern = {
+      a, s, w,
+      a, s, w,
+      a, s, w
+    }
+  },
+  -- horizontal parking place
+  {
+    sprites = { 119 },
+    chance = 0.1,
+    stopOnMatch = true,
+    pattern = {
+      w, w, w,
+      s, s, s,
+      a, a, a,
     }
   },
   -- top left corner
@@ -193,7 +215,7 @@ streetRules = {
   },
   -- all
   {
-    sprites = { 81, 118 },
+    sprites = { 81, 118, 81 },
     -- stopOnMatch = true,
     pattern = {
       s

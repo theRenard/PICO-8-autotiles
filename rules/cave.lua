@@ -10,7 +10,7 @@ local a = 'all'
 --   pattern = { type }, // a = all, r = rock, -r = not rock
 -- }
 
-platformRules = {
+caveRules = {
   -- plants
   {
     chance = 0.3,

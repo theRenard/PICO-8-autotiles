@@ -1,11 +1,15 @@
 cls()
 
 -- Constants
-local levelWidth = 128
-local levelHeight = 128
+local levelWidth = nil
+local levelHeight = nil
+local rules = nil
+local level = nil
+local ruledlevel = nil
+local skip = nil
 
 -- do this programmatically
-directions = {
+local directions = {
     [1] = { { 0, 0 } },
     [3] = {},
     [5] = {}
@@ -24,9 +28,15 @@ for y = -2, 2 do
 end
 
 -- Tiles
-local level = create2DArr(levelWidth, levelHeight, 0)
-local ruledlevel = create2DArr(levelWidth, levelHeight, 0)
-local skip = create2DArr(levelWidth, levelHeight, false)
+
+function initAutotiles(newRules, newLevelWidth, newLevelHeight)
+    levelWidth = newLevelWidth
+    levelHeight = newLevelHeight
+    level = create2DArr(levelWidth, levelHeight, 0)
+    ruledlevel = create2DArr(levelWidth, levelHeight, 0)
+    skip = create2DArr(levelWidth, levelHeight, false)
+    rules = newRules
+end
 
 function setTiles()
     forEachArr2D(
@@ -44,7 +54,7 @@ function setTileAt(x, y)
     if level[x][y] == 0 or skip[x][y] then
         return
     end
-    for rule in all(streetRules) do
+    for rule in all(rules) do
         local active = rule.active or true
         if active then
             local match = false
@@ -133,41 +143,4 @@ function createMap()
             mset(x - 1, y - 1, ruledlevel[x][y])
         end
     )
-end
-
-_init = function()
-    -- readPixelMap(64, 0, 128, 32) -- platform
-    readPixelMap(96, 32, 128, 72) -- street
-    setTiles()
-    createMap()
-end
-
--- the coordinates of the upper left corner of the camera
-cam_x = 0
-cam_y = 0
-
-function _update()
-    if (btn(0) and cam_x > 0) cam_x -= 10
-    if (btn(1) and cam_x < 895) cam_x += 10
-    if (btn(2) and cam_y > 0) cam_y -= 10
-    if (btn(3) and cam_y < 127) cam_y += 10
-    -- (the camera stops with the bottom of
-    -- the screen at row 32.)
-end
-
-function _draw()
-    cls()
-    -- set the camera to the current location
-    camera(cam_x, cam_y)
-
-    -- draw the entire map at (0, 0), allowing
-    -- the camera and clipping region to decide
-    -- what is shown
-    map(0, 0, 0, 0, 64, 64)
-    -- drawMiniMap(cam_x, cam_y)
-
-    -- reset the camera then print the camera
-    -- coordinates on screen
-    camera()
-    --   print('('..cam_x..', '..cam_y..')', 0, 0, 7)
 end
