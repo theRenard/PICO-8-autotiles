@@ -2,6 +2,7 @@ local e = 0
 local s = 5 --street
 local w = 6 -- sidewalk
 local q = 12 -- water
+local g = 11 -- grass
 local a = 'all'
 
 cityRules = {
@@ -367,5 +368,17 @@ cityRules = {
         q
       }
     }
+  },
+  -- grass
+  {
+    -- grass all
+    {
+      sprites = { 115, 116, 117 },
+      stopOnMatch = true,
+      pattern = {
+        g
+      }
+    }
   }
+
 }

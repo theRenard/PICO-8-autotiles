@@ -12,8 +12,56 @@ local a = 'all'
 -- }
 
 caveRules = {
+  -- background
+  {
+    -- background all
+    {
+      sprites = { 39, 40, 55, 56 },
+      chance = 0.2,
+      pattern = {
+        n
+      }
+    },
+    -- torch
+    {
+      block = {
+        { 15 },
+        { 31 },
+      },
+      chance = 0.01,
+      stopOnMatch = true,
+      pattern = {
+        n, n, n,
+        n, n, n,
+        n, n, n,
+      }
+    },
+  },
   -- cave all
   {
+    -- stairs
+    {
+      sprites = { 35 },
+      stopOnMatch = true,
+      pattern = {
+        a, a, a, a, a,
+        r, n, n, a, a,
+        r, r, r, a, a,
+        r, r, r, a, a,
+        r, n, n, a, a,
+      }
+    },
+    {
+      sprites = { 35 },
+      stopOnMatch = true,
+      pattern = {
+        r, n, n, a, a,
+        r, r, r, a, a,
+        r, r, r, a, a,
+        r, n, n, a, a,
+        a, a, a, a, a,
+      }
+    },
     -- plants
     {
       chance = 0.3,
@@ -142,5 +190,6 @@ caveRules = {
         n, n, n
       }
     }
-  }
+  },
+
 }
