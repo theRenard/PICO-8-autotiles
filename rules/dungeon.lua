@@ -29,6 +29,28 @@ dungeonRules = {
         w
       }
     },
+    -- random bottom door
+    {
+      sprites = { 130, 162 },
+      chance = 0.1,
+      stopOnMatch = true,
+      pattern = {
+        a, a, a,
+        w, w, w,
+        a, s, a
+      }
+    },
+    -- random top door
+    {
+      sprites = { 132, 162 },
+      chance = 0.1,
+      stopOnMatch = true,
+      pattern = {
+        a, s, a,
+        w, w, w,
+        a, a, a
+      }
+    },
     -- random trap
     {
       sprites = { 161 },
