@@ -1,5 +1,6 @@
 local e = 0
-local r = 5  --rock
+local r = 5 --rock
+local n = -r -- not rock
 local a = 'all'
 
 -- rule = {
@@ -11,131 +12,135 @@ local a = 'all'
 -- }
 
 caveRules = {
-  -- plants
+  -- cave all
   {
-    chance = 0.3,
-    sprites = { 17, 19 },
-    pattern = {
-      a, r, a,
-      a, -r, a,
-      a, a, a
+    -- plants
+    {
+      chance = 0.3,
+      sprites = { 21, 22, 23, 24 },
+      pattern = {
+        a, r, a,
+        a, n, a,
+        a, a, a
+      }
+    },
+    -- dirt
+    {
+      chance = 0.3,
+      sprites = { 9, 10, 11, 12, 13, 14, 33 },
+      pattern = {
+        a, a, a,
+        a, n, a,
+        a, r, a
+      }
+    },
+    -- jumps
+    {
+      sprites = { 51 },
+      stopOnMatch = true,
+      pattern = {
+        a, n, a,
+        a, r, a,
+        a, n, a
+      }
+    },
+    -- top right corner
+    {
+      sprites = { 16 },
+      stopOnMatch = true,
+      pattern = {
+        a, n, a,
+        n, r, a,
+        a, a, a
+      }
+    },
+    -- top left corner
+    {
+      sprites = { 18 },
+      stopOnMatch = true,
+      pattern = {
+        a, n, a,
+        a, r, n,
+        a, a, a
+      }
+    },
+    -- bottom left corner
+    {
+      sprites = { 48 },
+      stopOnMatch = true,
+      pattern = {
+        a, a, a,
+        n, r, a,
+        a, n, a
+      }
+    },
+    -- bottom right corner
+    {
+      sprites = { 50 },
+      stopOnMatch = true,
+      pattern = {
+        a, a, a,
+        a, r, n,
+        a, n, a
+      }
+    },
+    -- top side
+    {
+      sprites = { 17 },
+      stopOnMatch = true,
+      pattern = {
+        a, n, a,
+        a, r, a,
+        a, a, a
+      }
+    },
+    -- bottom side
+    {
+      sprites = { 49 },
+      stopOnMatch = true,
+      pattern = {
+        a, a, a,
+        a, r, a,
+        a, n, a
+      }
+    },
+    -- left side
+    {
+      sprites = { 32 },
+      stopOnMatch = true,
+      pattern = {
+        a, a, a,
+        n, r, a,
+        a, a, a
+      }
+    },
+    -- right side
+    {
+      sprites = { 34 },
+      stopOnMatch = true,
+      pattern = {
+        a, a, a,
+        a, r, n,
+        a, a, a
+      }
+    },
+    -- inner
+    {
+      sprites = { 1, 2, 3, 4, 5, 6 },
+      chance = 0.2,
+      stopOnMatch = true,
+      pattern = {
+        r
+      }
+    },
+    -- solo
+    {
+      sprites = { 51 },
+      pattern = {
+        n, n, n,
+        n, r, n,
+        n, n, n
+      }
     }
-  },
-  -- dirt
-  {
-    chance = 0.3,
-    sprites = { 37 },
-    pattern = {
-      a, a, a,
-      a, -r, a,
-      a, r, a
-    }
-  },
-  -- jumps
-  {
-    sprites = { 34 },
-    stopOnMatch = true,
-    pattern = {
-      a, -r, a,
-      a, r, a,
-      a, -r, a
-    }
-  },
-  -- top left corner
-  {
-    sprites = { 20 },
-    stopOnMatch = true,
-    pattern = {
-      a, -r, a,
-      -r, r, a,
-      a, a, a
-    }
-  },
-  -- top right corner
-  {
-    sprites = { 23 },
-    stopOnMatch = true,
-    pattern = {
-      a, -r, a,
-      a, r, -r,
-      a, a, a
-    }
-  },
-  -- bottom left corner
-  {
-    sprites = { 52 },
-    stopOnMatch = true,
-    pattern = {
-      a, a, a,
-      -r, r, a,
-      a, -r, a
-    }
-  },
-  -- bottom right corner
-  {
-    sprites = { 55 },
-    stopOnMatch = true,
-    pattern = {
-      a, a, a,
-      a, r, -r,
-      a, -r, a
-    }
-  },
-  -- top side
-  {
-    sprites = { 21 },
-    stopOnMatch = true,
-    pattern = {
-      a, -r, a,
-      a, r, a,
-      a, a, a
-    }
-  },
-  -- bottom side
-  {
-    sprites = { 53 },
-    stopOnMatch = true,
-    pattern = {
-      a, a, a,
-      a, r, a,
-      a, -r, a
-    }
-  },
-  -- left side
-  {
-    sprites = { 36 },
-    stopOnMatch = true,
-    pattern = {
-      a, a, a,
-      -r, r, a,
-      a, a, a
-    }
-  },
-  -- right side
-  {
-    sprites = { 39 },
-    stopOnMatch = true,
-    pattern = {
-      a, a, a,
-      a, r, -r,
-      a, a, a
-    }
-  },
-  -- inner
-  {
-    sprites = { 2, 3, 4, 5, 6, 7 },
-    stopOnMatch = true,
-    pattern = {
-      r
-    }
-  },
-  -- solo
-  {
-    sprites = { 33 },
-    pattern = {
-      -r, -r, -r,
-      -r, r, -r,
-      -r, -r, -r
-    }
-  },
+  }
 }

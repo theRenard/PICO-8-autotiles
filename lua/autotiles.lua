@@ -54,60 +54,62 @@ function setTileAt(x, y)
     if level[x][y] == 0 or skip[x][y] then
         return
     end
-    for rule in all(rules) do
-        local active = rule.active or true
-        if active then
-            local match = false
-            local size = ({[1] = 1, [9] = 3, [25] = 5})[#rule.pattern] or 1
-            for i = 1, #directions[size] do
-                local pos = directions[size][i]
-                local dx = pos[1]
-                local dy = pos[2]
-                local tile = rule.pattern[i]
-                if isInBounds(x + dx, y + dy) then
-                    -- if the tile is 'all' then it will match any tile
-                    -- if the tile is a number then it will match that specific tile
-                    -- if the tile is a negative number then it will match any tile except that specific tile
-                    if tile == 'all' or (tile > 0 and level[x + dx][y + dy] == tile) or (tile < 0 and level[x + dx][y + dy] != -tile) then
-                        match = true
+    for ruleGroup in all(rules) do
+        for rule in all(ruleGroup) do
+            local active = rule.active or true
+            if active then
+                local match = false
+                local size = ({[1] = 1, [9] = 3, [25] = 5})[#rule.pattern] or 1
+                for i = 1, #directions[size] do
+                    local pos = directions[size][i]
+                    local dx = pos[1]
+                    local dy = pos[2]
+                    local tile = rule.pattern[i]
+                    if isInBounds(x + dx, y + dy) then
+                        -- if the tile is 'all' then it will match any tile
+                        -- if the tile is a number then it will match that specific tile
+                        -- if the tile is a negative number then it will match any tile except that specific tile
+                        if tile == 'all' or (tile > 0 and level[x + dx][y + dy] == tile) or (tile < 0 and level[x + dx][y + dy] != -tile) then
+                            match = true
+                        else
+                            match = false
+                            break
+                        end
                     else
-                        match = false
-                        break
-                    end
-                else
-                    -- if the tile is out of bounds then it will match only if the tile is 'all'
-                    if tile == 'all' then
-                        match = true
-                    else
-                        match = false
-                        break
+                        -- if the tile is out of bounds then it will match only if the tile is 'all'
+                        if tile == 'all' then
+                            match = true
+                        else
+                            match = false
+                            break
+                        end
                     end
                 end
-            end
-            if match then
-                local chance = rule.chance or 1
-                if rnd() < chance then
-                    if rule.block then
-                        local blockHeight = #rule.block
-                        local blockWidth = #rule.block[1]
-                        local offX = rule.offsetX or 0
-                        local offY = rule.offsetY or 0
-                        local startX = x + offX
-                        local startY = y + offY
-                        for dy = 1, blockHeight do
-                            for dx = 1, blockWidth do
-                                ruledlevel[startX + dx - 1][startY + dy - 1] = rule.block[dy][dx]
-                                -- we don't want to check these tiles again
-                                skip[startX + dx - 1][startY + dy - 1] = true
+                if match then
+                    local chance = rule.chance or 1
+                    if rnd() < chance then
+                        if rule.block then
+                            local blockHeight = #rule.block
+                            local blockWidth = #rule.block[1]
+                            local offX = rule.offsetX or 0
+                            local offY = rule.offsetY or 0
+                            local startX = x + offX
+                            local startY = y + offY
+                            for dy = 1, blockHeight do
+                                for dx = 1, blockWidth do
+                                    ruledlevel[startX + dx - 1][startY + dy - 1] = rule.block[dy][dx]
+                                    -- we don't want to check these tiles again
+                                    skip[startX + dx - 1][startY + dy - 1] = true
+                                end
                             end
+                        elseif rule.sprites then
+                            local sprite = getRandomItem(rule.sprites)
+                            ruledlevel[x][y] = sprite
                         end
-                    elseif rule.sprites then
-                        local sprite = getRandomItem(rule.sprites)
-                        ruledlevel[x][y] = sprite
-                    end
-                    if rule.stopOnMatch then
-                        -- if stopOnMatch is true then it will stop checking the other rules
-                        break
+                        if rule.stopOnMatch then
+                            -- if stopOnMatch is true then it will stop checking the other rules
+                            break
+                        end
                     end
                 end
             end

@@ -25,7 +25,7 @@ function createCity()
 end
 
 _init = function()
-  createCave()
+  createCity()
 end
 
 -- the coordinates of the upper left corner of the camera
