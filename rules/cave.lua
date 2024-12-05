@@ -1,3 +1,5 @@
+-- tiles by https://adamatomic.itch.io/cavernas
+
 local e = 0
 local r = 5 --rock
 local n = -r -- not rock
