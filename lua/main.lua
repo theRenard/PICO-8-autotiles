@@ -24,8 +24,18 @@ function createCity()
   createMap()
 end
 
+function createDungeon()
+  local startX, startY = tileNumberToCoords(200)
+  local endX, endY = tileNumberToCoords(255)
+  initAutotiles(dungeonRules, 128, 32)
+  readPixelMap(startX, startY, endX + 8, endY + 8) -- city
+  setTiles()
+  createMap()
+
+end
+
 _init = function()
-  createCave()
+  createDungeon()
 end
 
 -- the coordinates of the upper left corner of the camera
