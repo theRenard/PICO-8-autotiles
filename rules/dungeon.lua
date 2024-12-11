@@ -20,7 +20,7 @@ local a = 'all'
 dungeonRules = {
   -- walls & pathways
   {
-    -- random tree
+    -- random tree on internal pathway
     {
       sprites = { 164, 165, 166, 167, 171, 172, 145, 145, 145, 145, 145, 145 },
       -- chance = 0.4,
@@ -42,7 +42,7 @@ dungeonRules = {
     },
     -- random top door
     {
-      sprites = { 132, 162 },
+      sprites = { 169, 162 },
       chance = 0.1,
       stopOnMatch = true,
       pattern = {
@@ -59,7 +59,7 @@ dungeonRules = {
       pattern = {
         a, a, a,
         w, w, w,
-        a, n, a
+        a, s, a
       }
     },
     -- top right corner
@@ -67,8 +67,8 @@ dungeonRules = {
       sprites = { 128 },
       stopOnMatch = true,
       pattern = {
-        a, n, a,
-        n, w, a,
+        a, s, a,
+        s, w, a,
         a, a, a
       }
     },
@@ -77,8 +77,8 @@ dungeonRules = {
       sprites = { 131 },
       stopOnMatch = true,
       pattern = {
-        a, n, a,
-        a, w, n,
+        a, s, a,
+        a, w, s,
         a, a, a
       }
     },
@@ -88,8 +88,8 @@ dungeonRules = {
       stopOnMatch = true,
       pattern = {
         a, a, a,
-        n, w, a,
-        a, n, a
+        s, w, a,
+        a, s, a
       }
     },
     -- bottom left corner
@@ -98,8 +98,48 @@ dungeonRules = {
       stopOnMatch = true,
       pattern = {
         a, a, a,
-        a, w, n,
-        a, n, a
+        a, w, s,
+        a, s, a
+      }
+    },
+    -- bottom left inner corner
+    {
+      sprites = { 176 },
+      stopOnMatch = true,
+      pattern = {
+        a, w, s,
+        a, w, w,
+        a, a, a
+      }
+    },
+    -- top left inner corner
+    {
+      sprites = { 178 },
+      stopOnMatch = true,
+      pattern = {
+        a, a, a,
+        a, w, w,
+        a, w, s
+      }
+    },
+    -- bottom right inner corner
+    {
+      sprites = { 177 },
+      stopOnMatch = true,
+      pattern = {
+        s, w, a,
+        w, w, a,
+        a, a, a
+      }
+    },
+    -- top right inner corner
+    {
+      sprites = { 179 },
+      stopOnMatch = true,
+      pattern = {
+        a, a, a,
+        w, w, a,
+        s, w, a
       }
     },
     -- top wall
@@ -107,7 +147,7 @@ dungeonRules = {
       sprites = { 129 },
       stopOnMatch = true,
       pattern = {
-        a, n, a,
+        a, s, a,
         w, w, w,
         a, a, a
       }
@@ -119,7 +159,7 @@ dungeonRules = {
       pattern = {
         a, a, a,
         w, w, w,
-        a, n, a
+        a, s, a
       }
     },
     -- left wall
@@ -128,7 +168,7 @@ dungeonRules = {
       stopOnMatch = true,
       pattern = {
         a, a, a,
-        n, w, a,
+        s, w, a,
         a, a, a
       }
     },
@@ -138,16 +178,127 @@ dungeonRules = {
       stopOnMatch = true,
       pattern = {
         a, a, a,
-        a, w, n,
+        a, w, s,
         a, a, a
       }
     },
-    -- wall
+    -- external pathway with random trees
     {
-      sprites = { 145 },
+      sprites = { 164, 165, 166, 167, 171, 172, 145, 145, 145, 145, 145, 145 },
+      chance = 0.1,
+      stopOnMatch = true,
       pattern = {
         s
       }
+    },
+    {
+      sprites = { 145 },
+      stopOnMatch = true,
+      pattern = {
+        s
+      }
+    },
+  },
+  -- water
+  {
+    -- water top right corner
+    {
+      sprites = { 143 },
+      stopOnMatch = true,
+      pattern = {
+        a, -q, a,
+        q, q, -q,
+        a, q, a
+      }
+    },
+    -- water top left corner
+    {
+      sprites = { 141 },
+      stopOnMatch = true,
+      pattern = {
+        a, -q, a,
+        -q, q, q,
+        a, q, a
+      }
+    },
+    -- water bottom right corner
+    {
+      sprites = { 175 },
+      stopOnMatch = true,
+      pattern = {
+        a, q, a,
+        q, q, -q,
+        a, -q, a
+      }
+    },
+    -- water bottom left corner
+    {
+      sprites = { 173 },
+      stopOnMatch = true,
+      pattern = {
+        a, q, a,
+        -q, q, q,
+        a, -q, a
+      }
+    },
+    -- water top wall
+    {
+      sprites = { 142 },
+      stopOnMatch = true,
+      pattern = {
+        a, -q, a,
+        q, q, q,
+        a, a, a
+      }
+    },
+    -- water bottom wall
+    {
+      sprites = { 174 },
+      stopOnMatch = true,
+      pattern = {
+        a, a, a,
+        q, q, q,
+        a, -q, a
+      }
+    },
+    -- water left wall
+    {
+      sprites = { 157 },
+      stopOnMatch = true,
+      pattern = {
+        a, q, a,
+        -q, q, a,
+        a, q, a
+      }
+    },
+    -- water right wall
+    {
+      sprites = { 159 },
+      stopOnMatch = true,
+      pattern = {
+        a, q, a,
+        a, q, -q,
+        a, q, a
+      }
+    },
+    -- water
+    {
+      sprites = { 158 },
+      stopOnMatch = true,
+      pattern = {
+        q
+      }
+    }
+  },
+  -- grass
+  {
+    {
+      sprites = { 172 },
+      stopOnMatch = true,
+      pattern = {
+        g
+      }
     }
   }
+
 }
