@@ -195,3 +195,23 @@ caveRules = {
   },
 
 }
+
+caveRules = {
+  -- background
+  {
+    -- background all
+    {
+      sprites = { 3 },
+      pattern = {
+        n
+      }
+    },
+    {
+      sprites = { 1, 2, 4, 5, 6 },
+      chance = 0.2,
+      pattern = {
+        n
+      }
+    },
+  }
+}

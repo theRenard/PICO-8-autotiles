@@ -1,3 +1,5 @@
+-- Copyright (c) 2024 Daniele Tabanella under the MIT license
+
 cls()
 
 -- Constants
