@@ -5,14 +5,6 @@ local r = 5 --rock
 local n = -r -- not rock
 local a = 'all'
 
--- rule = {
---   active = bool,
---   stopOnMatch = bool,
---   chance = 0 - 1,
---   sprites = { sprite_number },
---   pattern = { type }, // a = all, r = rock, -r = not rock
--- }
-
 caveRules = {
   -- background
   {
@@ -194,24 +186,4 @@ caveRules = {
     }
   },
 
-}
-
-caveRules = {
-  -- background
-  {
-    -- background all
-    {
-      sprites = { 3 },
-      pattern = {
-        n
-      }
-    },
-    {
-      sprites = { 1, 2, 4, 5, 6 },
-      chance = 0.2,
-      pattern = {
-        n
-      }
-    },
-  }
 }

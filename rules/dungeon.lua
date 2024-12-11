@@ -9,14 +9,6 @@ local q = 12 -- water
 local g = 11 -- grass
 local a = 'all'
 
--- rule = {
---   active = bool,
---   stopOnMatch = bool,
---   chance = 0 - 1,
---   sprites = { sprite_number },
---   pattern = { type }, // a = all, r = rock, -r = not rock
--- }
-
 dungeonRules = {
   -- walls & pathways
   {

@@ -92,7 +92,7 @@ In this case, the pattern is a 1x1 matrix that represents a wall. We are saying 
 
 `sprites` can be a single sprite or a group of sprites. If it is a group of sprites, the autotile will randomly choose one of the sprites in the group.
 
-`pattern` is a matrix that represents the map values that will be used to generate the autotile, where the center of the matrix is the current tile being processed. The matrix can be up to 5x5.
+`pattern` is a matrix that represents the map values that will be used to generate the autotile, where the center of the matrix is the current tile being processed. The matrix can be up to 5x5. Use `'All'` to match any value.
 
 ```lua
 {
