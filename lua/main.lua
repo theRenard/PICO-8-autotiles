@@ -23,7 +23,7 @@ end
 function createCave()
   local startX, startY = tileNumberToCoords(192)
   local endX, endY = tileNumberToCoords(255)
-  local level = readPixelMap(startX, startY, endX + 8, endY + 8) -- city
+  local level = readPixelMap(startX, startY, endX + 8, endY + 8) -- cave
   createMap(caveRules, level)
 end
 
@@ -69,9 +69,9 @@ cam_y = 0
 
 function _update()
   if (btn(0) and cam_x > 0) cam_x -= 10
-  if (btn(1) and cam_x < 895) cam_x += 10
+  if (btn(1) and cam_x < 895 - 8) cam_x += 10
   if (btn(2) and cam_y > 0) cam_y -= 10
-  if (btn(3) and cam_y < 895) cam_y += 10
+  if (btn(3) and cam_y < 127) cam_y += 10
   -- (the camera stops with the bottom of
   -- the screen at row 32.)
   if (btn(4)) previousRules()
