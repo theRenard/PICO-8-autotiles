@@ -135,25 +135,25 @@ dungeonRules = {
       }
     },
     -- top wall
-    {
-      sprites = { 129 },
-      stopOnMatch = true,
-      pattern = {
-        a, s, a,
-        w, w, w,
-        a, a, a
-      }
-    },
+    -- {
+    --   sprites = { 129 },
+    --   stopOnMatch = true,
+    --   pattern = {
+    --     a, s, a,
+    --     w, w, w,
+    --     a, a, a
+    --   }
+    -- },
     -- bottom wall
-    {
-      sprites = { 129 },
-      stopOnMatch = true,
-      pattern = {
-        a, a, a,
-        w, w, w,
-        a, s, a
-      }
-    },
+    -- {
+    --   sprites = { 129 },
+    --   stopOnMatch = true,
+    --   pattern = {
+    --     a, a, a,
+    --     w, w, w,
+    --     a, s, a
+    --   }
+    -- },
     -- left wall
     {
       sprites = { 144 },
