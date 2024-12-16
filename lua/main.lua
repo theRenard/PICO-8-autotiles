@@ -10,13 +10,10 @@ end
 function readPixelMap(startX, startY, endX, endY)
   -- read pixels from sprite sheet
   -- from y=64 to 81 and from x=0 to 32
-  local level = create2DArr(endX - startX + 1, endY - startY + 1, 0)
-  for x = startX, endX do
-      for y = startY, endY do
-          local color = sget(x, y)
-          level[x - startX + 1][y - startY + 1] = color
-      end
-  end
+  local level = create2DArr(endX - startX, endY - startY, 0)
+  forEachArr2D(level, function(x, y)
+      level[x][y] = sget(x + startX, y + startY)
+  end)
   return level
 end
 
@@ -86,8 +83,7 @@ function _draw()
   -- draw the entire map at (0, 0), allowing
   -- the camera and clipping region to decide
   -- what is shown
-  -- map(0, 0, 0, 0, 128, 128)
-  spr(129, 8, 8)
+  map(0, 0, 0, 0, 128, 32)
   -- drawMiniMap(cam_x, cam_y)
 
   -- reset the camera then print the camera

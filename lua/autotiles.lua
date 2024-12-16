@@ -117,14 +117,14 @@ function createMap(rules, level)
         )
     end
 
-    local function createMap()
+    local function setMap()
         forEachArr2D(
             ruledlevel, function(x, y)
-                -- mset(x - 1, y - 1, ruledlevel[x][y])
+                mset(x - 1, y - 1, ruledlevel[x][y])
             end
         )
     end
 
     setTiles()
-    createMap()
+    setMap()
 end
