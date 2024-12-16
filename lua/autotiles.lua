@@ -120,7 +120,7 @@ function createMap(rules, level)
     local function createMap()
         forEachArr2D(
             ruledlevel, function(x, y)
-                mset(x - 1, y - 1, ruledlevel[x][y])
+                -- mset(x - 1, y - 1, ruledlevel[x][y])
             end
         )
     end
