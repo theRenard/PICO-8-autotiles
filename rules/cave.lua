@@ -12,6 +12,7 @@ caveRules = {
     {
       sprites = { 39, 40, 55, 56 },
       chance = 0.2,
+      stopOnMatch = false,
       pattern = {
         n
       }
@@ -23,7 +24,6 @@ caveRules = {
         { 31 },
       },
       chance = 0.01,
-      stopOnMatch = true,
       pattern = {
         n, n, n,
         n, n, n,
@@ -36,7 +36,6 @@ caveRules = {
     -- stairs
     {
       sprites = { 35 },
-      stopOnMatch = true,
       pattern = {
         a, a, a, a, a,
         r, n, n, a, a,
@@ -47,7 +46,6 @@ caveRules = {
     },
     {
       sprites = { 35 },
-      stopOnMatch = true,
       pattern = {
         r, n, n, a, a,
         r, r, r, a, a,
@@ -60,6 +58,7 @@ caveRules = {
     {
       chance = 0.3,
       sprites = { 21, 22, 23, 24 },
+      stopOnMatch = false,
       pattern = {
         a, r, a,
         a, n, a,
@@ -70,6 +69,7 @@ caveRules = {
     {
       chance = 0.3,
       sprites = { 9, 10, 11, 12, 13, 14, 33 },
+      stopOnMatch = false,
       pattern = {
         a, a, a,
         a, n, a,
@@ -79,7 +79,6 @@ caveRules = {
     -- jumps
     {
       sprites = { 51 },
-      stopOnMatch = true,
       pattern = {
         a, n, a,
         a, r, a,
@@ -89,7 +88,6 @@ caveRules = {
     -- top right corner
     {
       sprites = { 16 },
-      stopOnMatch = true,
       pattern = {
         a, n, a,
         n, r, a,
@@ -99,7 +97,6 @@ caveRules = {
     -- top left corner
     {
       sprites = { 18 },
-      stopOnMatch = true,
       pattern = {
         a, n, a,
         a, r, n,
@@ -109,7 +106,6 @@ caveRules = {
     -- bottom left corner
     {
       sprites = { 48 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         n, r, a,
@@ -119,7 +115,6 @@ caveRules = {
     -- bottom right corner
     {
       sprites = { 50 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         a, r, n,
@@ -129,7 +124,6 @@ caveRules = {
     -- top side
     {
       sprites = { 17 },
-      stopOnMatch = true,
       pattern = {
         a, n, a,
         a, r, a,
@@ -139,7 +133,6 @@ caveRules = {
     -- bottom side
     {
       sprites = { 49 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         a, r, a,
@@ -149,7 +142,6 @@ caveRules = {
     -- left side
     {
       sprites = { 32 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         n, r, a,
@@ -159,7 +151,6 @@ caveRules = {
     -- right side
     {
       sprites = { 34 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         a, r, n,
@@ -170,7 +161,6 @@ caveRules = {
     {
       sprites = { 1, 2, 3, 4, 5, 6 },
       chance = 0.2,
-      stopOnMatch = true,
       pattern = {
         r
       }
@@ -178,6 +168,7 @@ caveRules = {
     -- solo
     {
       sprites = { 51 },
+      stopOnMatch = false,
       pattern = {
         n, n, n,
         n, r, n,

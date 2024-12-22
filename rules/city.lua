@@ -19,7 +19,6 @@ cityRules = {
       },
       offsetY = -1,
       chance = 0.2,
-      stopOnMatch = true,
       pattern = {
         a, -s, -s, -s, a,
         s, s, s, s, s,
@@ -36,7 +35,6 @@ cityRules = {
       },
       offsetY = -1,
       chance = 0.2,
-      stopOnMatch = true,
       pattern = {
         a, -s, -s, -s, a,
         s, s, s, s, s,
@@ -52,7 +50,6 @@ cityRules = {
       },
       offsetX = -1,
       chance = 0.4,
-      stopOnMatch = true,
       pattern = {
         a, s, s, s, a,
         -s, s, s, s, -s,
@@ -68,7 +65,6 @@ cityRules = {
       },
       offsetX = -1,
       chance = 0.2,
-      stopOnMatch = true,
       pattern = {
         a, s, s, a, a,
         -s, s, s, -s, a,
@@ -81,7 +77,6 @@ cityRules = {
     {
       sprites = { 100 },
       chance = 0.1,
-      stopOnMatch = true,
       pattern = {
         a, s, -s,
         a, s, -s,
@@ -92,7 +87,6 @@ cityRules = {
     {
       sprites = { 100 },
       chance = 0.1,
-      stopOnMatch = true,
       pattern = {
         -s, -s, -s,
         s, s, s,
@@ -102,7 +96,6 @@ cityRules = {
     -- street top left corner
     {
       sprites = { 64 },
-      stopOnMatch = true,
       pattern = {
         -s, -s, a,
         -s, s, s,
@@ -112,7 +105,6 @@ cityRules = {
     -- street top right corner
     {
       sprites = { 66 },
-      stopOnMatch = true,
       pattern = {
         a, -s, -s,
         s, s, -s,
@@ -122,7 +114,6 @@ cityRules = {
     -- street bottom left corner
     {
       sprites = { 96 },
-      stopOnMatch = true,
       pattern = {
         a, s, a,
         -s, s, s,
@@ -132,7 +123,6 @@ cityRules = {
     -- street bottom right corner
     {
       sprites = { 98 },
-      stopOnMatch = true,
       pattern = {
         a, s, a,
         s, s, -s,
@@ -142,7 +132,6 @@ cityRules = {
     -- street top left corner
     {
       sprites = { 67 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         a, s, s,
@@ -152,7 +141,6 @@ cityRules = {
     -- street top right corner
     {
       sprites = { 68 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         s, s, a,
@@ -162,7 +150,6 @@ cityRules = {
     -- street bottom left corner
     {
       sprites = { 83 },
-      stopOnMatch = true,
       pattern = {
         a, s, -s,
         a, s, s,
@@ -172,7 +159,6 @@ cityRules = {
     -- street bottom right corner
     {
       sprites = { 84 },
-      stopOnMatch = true,
       pattern = {
         -s, s, a,
         s, s, a,
@@ -182,7 +168,6 @@ cityRules = {
     -- street left side
     {
       sprites = { 80 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         -s, s, a,
@@ -192,7 +177,6 @@ cityRules = {
     -- street right side
     {
       sprites = { 82 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         a, s, -s,
@@ -202,7 +186,6 @@ cityRules = {
     -- street top side
     {
       sprites = { 65 },
-      stopOnMatch = true,
       pattern = {
         a, -s, a,
         a, s, a,
@@ -212,7 +195,6 @@ cityRules = {
     -- street bottom side
     {
       sprites = { 97 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         a, s, a,
@@ -222,7 +204,6 @@ cityRules = {
     -- street all
     {
       sprites = { 81, 99, 81 },
-      -- stopOnMatch = true,
       pattern = {
         s
       }
@@ -233,7 +214,6 @@ cityRules = {
     -- walkway top left corner
     {
       sprites = { 77 },
-      stopOnMatch = true,
       pattern = {
         -w, -w, a,
         -w, w, w,
@@ -243,7 +223,6 @@ cityRules = {
     -- walkway top right corner
     {
       sprites = { 79 },
-      stopOnMatch = true,
       pattern = {
         a, -w, -w,
         w, w, -w,
@@ -253,7 +232,6 @@ cityRules = {
     -- walkway bottom left corner
     {
       sprites = { 109 },
-      stopOnMatch = true,
       pattern = {
         a, w, a,
         -w, w, w,
@@ -263,7 +241,6 @@ cityRules = {
     -- walkway bottom right corner
     {
       sprites = { 111 },
-      stopOnMatch = true,
       pattern = {
         a, w, a,
         w, w, -w,
@@ -273,7 +250,6 @@ cityRules = {
     -- walkway left side + lamp
     {
       sprites = { 108 },
-      stopOnMatch = true,
       chance = 0.1,
       pattern = {
         a, a, a,
@@ -284,7 +260,6 @@ cityRules = {
     -- walkway left side
     {
       sprites = { 93 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         -w, w, a,
@@ -294,7 +269,6 @@ cityRules = {
     -- walkway right side + lamp
     {
       sprites = { 107 },
-      stopOnMatch = true,
       chance = 0.1,
       pattern = {
         a, a, a,
@@ -305,7 +279,6 @@ cityRules = {
     -- walkway right side
     {
       sprites = { 95 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         a, w, -w,
@@ -315,7 +288,6 @@ cityRules = {
     -- walkway top side
     {
       sprites = { 78 },
-      stopOnMatch = true,
       pattern = {
         a, -w, a,
         a, w, a,
@@ -325,7 +297,6 @@ cityRules = {
     -- walkway bottom side
     {
       sprites = { 110 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         a, w, a,
@@ -335,7 +306,7 @@ cityRules = {
     -- walkway all
     {
       sprites = { 94 },
-      -- stopOnMatch = true,
+      stopOnMatch = false,
       pattern = {
         w
       }
@@ -346,7 +317,6 @@ cityRules = {
     -- water top pier
     {
       sprites = { 106 },
-      stopOnMatch = true,
       pattern = {
         a, w, a,
         a, q, a,
@@ -357,7 +327,6 @@ cityRules = {
     {
       sprites = { 119, 120 },
       chance = 0.2,
-      stopOnMatch = true,
       pattern = {
         q
       }
@@ -365,7 +334,6 @@ cityRules = {
     -- water all
     {
       sprites = { 118 },
-      stopOnMatch = true,
       pattern = {
         q
       }
@@ -376,7 +344,6 @@ cityRules = {
     -- grass all
     {
       sprites = { 115, 116, 117 },
-      stopOnMatch = true,
       pattern = {
         g
       }

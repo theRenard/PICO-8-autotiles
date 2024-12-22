@@ -108,7 +108,12 @@ function setTileAt(x, y)
                             local sprite = getRandomItem(rule.sprites)
                             ruledlevel[x][y] = sprite
                         end
-                        if rule.stopOnMatch then
+                        -- stopOnMatch is false only if it's not defined
+                        local stopOnMatch = true
+                        if rule.stopOnMatch != nil then
+                            stopOnMatch = rule.stopOnMatch
+                        end
+                        if stopOnMatch then
                             -- if stopOnMatch is true then it will stop checking the other rules
                             break
                         end

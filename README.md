@@ -126,7 +126,7 @@ In this case, the pattern is a 1x1 matrix that represents a wall. We are saying 
 }
 ```
 
-`stopOnMatch` is a boolean that defines if the rule should stop processing the other rules if it matches the pattnern. If it is true, the rule will stop processing, if it is false, the rule will continue processing the next one.
+`stopOnMatch` is a boolean that defines if the rule should stop processing the other rules if it matches the pattnern. If it is true (default), the rule will stop processing, if it is false, the rule will continue processing the next one.
 
 ```lua
 {
