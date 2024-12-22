@@ -37,7 +37,10 @@ function createMap(rules, level)
         end
         for ruleGroup in all(rules) do
             for rule in all(ruleGroup) do
-                local active = rule.active or true
+                local active = true
+                if rule.active != nil then
+                    active = rule.active
+                end
                 if active then
                     local match = false
                     local size = ({ [1] = 1, [9] = 3, [25] = 5 })[#rule.pattern] or 1
@@ -92,7 +95,7 @@ function createMap(rules, level)
                             if rule.stopOnMatch != nil then
                                 stopOnMatch = rule.stopOnMatch
                             end
-                            if rule.stopOnMatch then
+                            if stopOnMatch then
                                 -- if stopOnMatch is true then it will stop checking the other rules
                                 break
                             end
