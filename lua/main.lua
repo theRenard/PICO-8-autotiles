@@ -6,33 +6,36 @@ function tileNumberToCoords(tile_number)
   return x, y
 end
 
+
+function readPixelMap(startX, startY, endX, endY)
+  -- read pixels from sprite sheet
+  -- from y=64 to 81 and from x=0 to 32
+  local level = create2DArr(endX - startX, endY - startY, 0)
+  forEachArr2D(level, function(x, y)
+      level[x][y] = sget(x + startX, y + startY)
+  end)
+  return level
+end
+
 function createCave()
-  -- local startX, startY = tileNumberToCoords(192)
-  -- local endX, endY = tileNumberToCoords(247)
-  local startX, startY = tileNumberToCoords(200)
+  local startX, startY = tileNumberToCoords(192)
   local endX, endY = tileNumberToCoords(255)
-  initAutotiles(caveRules, 128, 32)
-  readPixelMap(startX, startY, endX + 8, endY + 8) -- city
-  setTiles()
-  createMap()
+  local level = readPixelMap(startX, startY, endX + 8, endY + 8) -- cave
+  createMap(caveRules, level)
 end
 
 function createCity()
-  local startX, startY = tileNumberToCoords(200)
+  local startX, startY = tileNumberToCoords(192)
   local endX, endY = tileNumberToCoords(255)
-  initAutotiles(cityRules, 128, 32)
-  readPixelMap(startX, startY, endX + 8, endY + 8) -- city
-  setTiles()
-  createMap()
+  local level = readPixelMap(startX, startY, endX + 8, endY + 8) -- city
+  createMap(cityRules, level)
 end
 
 function createDungeon()
-  local startX, startY = tileNumberToCoords(200)
+  local startX, startY = tileNumberToCoords(192)
   local endX, endY = tileNumberToCoords(255)
-  initAutotiles(dungeonRules, 128, 32)
-  readPixelMap(startX, startY, endX + 8, endY + 8) -- city
-  setTiles()
-  createMap()
+  local level = readPixelMap(startX, startY, endX + 8, endY + 8) -- dungeon
+  createMap(dungeonRules, level)
 end
 
 _init = function()
@@ -63,7 +66,7 @@ cam_y = 0
 
 function _update()
   if (btn(0) and cam_x > 0) cam_x -= 10
-  if (btn(1) and cam_x < 895) cam_x += 10
+  if (btn(1) and cam_x < 895 - 8) cam_x += 10
   if (btn(2) and cam_y > 0) cam_y -= 10
   if (btn(3) and cam_y < 127) cam_y += 10
   -- (the camera stops with the bottom of
@@ -80,7 +83,7 @@ function _draw()
   -- draw the entire map at (0, 0), allowing
   -- the camera and clipping region to decide
   -- what is shown
-  map(0, 0, 0, 0, 64, 64)
+  map(0, 0, 0, 0, 128, 32)
   -- drawMiniMap(cam_x, cam_y)
 
   -- reset the camera then print the camera
