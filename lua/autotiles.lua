@@ -60,8 +60,8 @@ function createMap(rules, level)
                                 break
                             end
                         else
-                            -- if the tile is out of bounds then it will match only if the tile is 'all'
-                            if tile == 'all' then
+                            -- if the tile is out of bounds then it will match only if the tile is 'all' or 0
+                            if tile == 'all' or tile == 0 then
                                 match = true
                             else
                                 match = false
