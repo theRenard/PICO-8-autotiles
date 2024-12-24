@@ -25,7 +25,6 @@ dungeonRules = {
     {
       sprites = { 130, 162 },
       chance = 0.1,
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         w, w, w,
@@ -36,7 +35,6 @@ dungeonRules = {
     {
       sprites = { 169, 162 },
       chance = 0.1,
-      stopOnMatch = true,
       pattern = {
         a, s, a,
         w, w, w,
@@ -47,7 +45,6 @@ dungeonRules = {
     {
       sprites = { 161 },
       chance = 0.1,
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         w, w, w,
@@ -57,7 +54,6 @@ dungeonRules = {
     -- top right corner
     {
       sprites = { 128 },
-      stopOnMatch = true,
       pattern = {
         a, s, a,
         s, w, a,
@@ -67,7 +63,6 @@ dungeonRules = {
     -- top left corner
     {
       sprites = { 131 },
-      stopOnMatch = true,
       pattern = {
         a, s, a,
         a, w, s,
@@ -77,7 +72,6 @@ dungeonRules = {
     -- bottom right corner
     {
       sprites = { 160 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         s, w, a,
@@ -87,7 +81,6 @@ dungeonRules = {
     -- bottom left corner
     {
       sprites = { 163 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         a, w, s,
@@ -97,7 +90,6 @@ dungeonRules = {
     -- bottom left inner corner
     {
       sprites = { 176 },
-      stopOnMatch = true,
       pattern = {
         a, w, s,
         a, w, w,
@@ -107,7 +99,6 @@ dungeonRules = {
     -- top left inner corner
     {
       sprites = { 178 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         a, w, w,
@@ -117,7 +108,6 @@ dungeonRules = {
     -- bottom right inner corner
     {
       sprites = { 177 },
-      stopOnMatch = true,
       pattern = {
         s, w, a,
         w, w, a,
@@ -127,7 +117,6 @@ dungeonRules = {
     -- top right inner corner
     {
       sprites = { 179 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         w, w, a,
@@ -137,7 +126,6 @@ dungeonRules = {
     -- top wall
     {
       sprites = { 129 },
-      stopOnMatch = true,
       pattern = {
         a, s, a,
         w, w, w,
@@ -147,7 +135,6 @@ dungeonRules = {
     -- bottom wall
     {
       sprites = { 129 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         w, w, w,
@@ -157,7 +144,6 @@ dungeonRules = {
     -- left wall
     {
       sprites = { 144 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         s, w, a,
@@ -167,7 +153,6 @@ dungeonRules = {
     -- right wall
     {
       sprites = { 147 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         a, w, s,
@@ -178,14 +163,12 @@ dungeonRules = {
     {
       sprites = { 164, 165, 166, 167, 171, 172, 145, 145, 145, 145, 145, 145 },
       chance = 0.1,
-      stopOnMatch = true,
       pattern = {
         s
       }
     },
     {
       sprites = { 145 },
-      stopOnMatch = true,
       pattern = {
         s
       }
@@ -196,7 +179,6 @@ dungeonRules = {
     -- water top right corner
     {
       sprites = { 143 },
-      stopOnMatch = true,
       pattern = {
         a, -q, a,
         q, q, -q,
@@ -206,7 +188,6 @@ dungeonRules = {
     -- water top left corner
     {
       sprites = { 141 },
-      stopOnMatch = true,
       pattern = {
         a, -q, a,
         -q, q, q,
@@ -216,7 +197,6 @@ dungeonRules = {
     -- water bottom right corner
     {
       sprites = { 175 },
-      stopOnMatch = true,
       pattern = {
         a, q, a,
         q, q, -q,
@@ -226,7 +206,6 @@ dungeonRules = {
     -- water bottom left corner
     {
       sprites = { 173 },
-      stopOnMatch = true,
       pattern = {
         a, q, a,
         -q, q, q,
@@ -236,7 +215,6 @@ dungeonRules = {
     -- water top wall
     {
       sprites = { 142 },
-      stopOnMatch = true,
       pattern = {
         a, -q, a,
         q, q, q,
@@ -246,7 +224,6 @@ dungeonRules = {
     -- water bottom wall
     {
       sprites = { 174 },
-      stopOnMatch = true,
       pattern = {
         a, a, a,
         q, q, q,
@@ -256,7 +233,6 @@ dungeonRules = {
     -- water left wall
     {
       sprites = { 157 },
-      stopOnMatch = true,
       pattern = {
         a, q, a,
         -q, q, a,
@@ -266,7 +242,6 @@ dungeonRules = {
     -- water right wall
     {
       sprites = { 159 },
-      stopOnMatch = true,
       pattern = {
         a, q, a,
         a, q, -q,
@@ -276,7 +251,6 @@ dungeonRules = {
     -- water
     {
       sprites = { 158 },
-      stopOnMatch = true,
       pattern = {
         q
       }
@@ -286,7 +260,6 @@ dungeonRules = {
   {
     {
       sprites = { 172 },
-      stopOnMatch = true,
       pattern = {
         g
       }
