@@ -1,27 +1,27 @@
-local currentRules = 0
+local curr = 0
 local width = 128
 local height = 32
 local startX = 0
 local startY = 96
 
-local level = create2DArr(width, height, 0)
+local level = mk2darr(width, height, 0)
 
-forEachArr2D(
+foreach_2darr(
   level, function(x, y)
     level[x][y] = sget(x + startX - 1, y + startY - 1)
   end
 )
 
-function createCave()
-  createMap(caveRules, level)
+function create_cave()
+  -- make_map(caveRules, level)
 end
 
-function createCity()
-  createMap(cityRules, level)
+function create_city()
+  -- make_map(cityRules, level)
 end
 
-function createDungeon()
-  createMap(dungeonRules, level)
+function create_dung()
+  make_map(dungeonRules, level)
 end
 
 _init = function()
@@ -29,20 +29,20 @@ _init = function()
 end
 
 function createTiles()
-  if currentRules < 0 then currentRules = 2 end
-  if currentRules > 2 then currentRules = 0 end
-  if currentRules == 0 then createDungeon() end
-  if currentRules == 1 then createCity() end
-  if currentRules == 2 then createCave() end
+  if curr < 0 then curr = 2 end
+  if curr > 2 then curr = 0 end
+  if curr == 0 then create_dung() end
+  if curr == 1 then create_city() end
+  if curr == 2 then create_cave() end
 end
 
 function nextRules()
-  currentRules += 1
+  curr += 1
   createTiles()
 end
 
 function previousRules()
-  currentRules -= 1
+  curr -= 1
   createTiles()
 end
 
@@ -70,7 +70,7 @@ function _draw()
   -- the camera and clipping region to decide
   -- what is shown
   map(0, 0, 0, 0, width, height)
-  -- drawMiniMap(cam_x, cam_y)
+  -- draw_map(cam_x, cam_y)
 
   -- reset the camera then print the camera
   -- coordinates on screen

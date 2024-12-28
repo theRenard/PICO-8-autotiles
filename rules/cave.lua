@@ -12,7 +12,7 @@ caveRules = {
     {
       sprites = { 39, 40, 55, 56 },
       chance = 0.2,
-      stopOnMatch = false,
+      stop = false,
       pattern = {
         n
       }
@@ -58,7 +58,7 @@ caveRules = {
     {
       chance = 0.3,
       sprites = { 21, 22, 23, 24 },
-      stopOnMatch = false,
+      stop = false,
       pattern = {
         a, r, a,
         a, n, a,
@@ -69,7 +69,7 @@ caveRules = {
     {
       chance = 0.3,
       sprites = { 9, 10, 11, 12, 13, 14, 33 },
-      stopOnMatch = false,
+      stop = false,
       pattern = {
         a, a, a,
         a, n, a,
@@ -168,7 +168,7 @@ caveRules = {
     -- solo
     {
       sprites = { 51 },
-      stopOnMatch = false,
+      stop = false,
       pattern = {
         n, n, n,
         n, r, n,

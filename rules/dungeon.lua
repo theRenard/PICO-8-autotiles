@@ -16,7 +16,7 @@ dungeonRules = {
     {
       sprites = { 164, 165, 166, 167, 171, 172, 145, 145, 145, 145, 145, 145 },
       -- chance = 0.4,
-      stopOnMatch = false,
+      stop = false,
       pattern = {
         w
       }

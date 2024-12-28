@@ -57,7 +57,7 @@ dungeonRules = {
   {
     {
       sprites = { 172 },
-      stopOnMatch = true,
+      stop = true,
       pattern = {
         6
       }
@@ -126,7 +126,7 @@ In this case, the pattern is a 1x1 matrix that represents a wall. We are saying 
 }
 ```
 
-`stopOnMatch` is a boolean that defines if the rule should stop processing the other rules if it matches the pattnern. If it is true (default), the rule will stop processing, if it is false, the rule will continue processing the next one.
+`stop` is a boolean that defines if the rule should stop processing the other rules if it matches the pattnern. If it is true (default), the rule will stop processing, if it is false, the rule will continue processing the next one.
 
 ```lua
 {
@@ -138,7 +138,7 @@ In this case, the pattern is a 1x1 matrix that represents a wall. We are saying 
   },
   {
     sprites = { 1, 2, 4, 5, 6 },
-    stopOnMatch = true,
+    stop = true,
     pattern = {
       5
     }
@@ -158,7 +158,7 @@ In this case, the pattern is a 1x1 matrix that represents a wall. We are saying 
   },
   offsetY = -1,
   chance = 0.2,
-  stopOnMatch = true,
+  stop = true,
   pattern = {
     a, -s, -s, -s, a,
     s, s, s, s, s,

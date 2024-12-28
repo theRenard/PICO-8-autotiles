@@ -306,7 +306,7 @@ cityRules = {
     -- walkway all
     {
       sprites = { 94 },
-      stopOnMatch = false,
+      stop = false,
       pattern = {
         w
       }

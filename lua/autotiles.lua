@@ -1,15 +1,11 @@
 -- Copyright (c) 2024 Daniele Tabanella under the MIT license
 
-function createMap(rules, level)
+function make_map(rules, level)
     -- Constants
-    local levelWidth = #level
-    local levelHeight = #level[1]
-    local level = level
-    local ruledlevel = create2DArr(levelWidth, levelHeight, 0)
-    local skip = create2DArr(levelWidth, levelHeight, false)
+    local w, h = #level, #level[1]
+    local ruled_lvl, skip = mk2darr(w, h, 0), mk2darr(w, h, false)
 
-    -- do this programmatically
-    local directions = {
+    local dirs = {
         [1] = { { 0, 0 } },
         [3] = {},
         [5] = {}
@@ -17,39 +13,34 @@ function createMap(rules, level)
 
     for y = -1, 1 do
         for x = -1, 1 do
-            add(directions[3], { x, y })
+            add(dirs[3], { x, y })
         end
     end
 
     for y = -2, 2 do
         for x = -2, 2 do
-            add(directions[5], { x, y })
+            add(dirs[5], { x, y })
         end
     end
 
-    local function isInBounds(x, y)
-        return x <= levelWidth and y <= levelHeight and x > 0 and y > 0
+    local function in_bound(x, y)
+        return x <= w and y <= h and x > 0 and y > 0
     end
 
-    local function setTileAt(x, y)
+    local function set_tl(x, y)
         if level[x][y] == 0 or skip[x][y] then
             return
         end
-        for ruleGroup in all(rules) do
-            for rule in all(ruleGroup) do
-                local active = true
-                if rule.active != nil then
-                    active = rule.active
-                end
+        for rule_group in all(rules) do
+            for rule in all(rule_group) do
+                local active = rule.active == nil or rule.active
                 if active then
                     local match = false
                     local size = ({ [1] = 1, [9] = 3, [25] = 5 })[#rule.pattern] or 1
-                    for i = 1, #directions[size] do
-                        local pos = directions[size][i]
-                        local dx = pos[1]
-                        local dy = pos[2]
+                    for i = 1, #dirs[size] do
+                        local dx, dy = dirs[size][i][1], dirs[size][i][2]
                         local tile = rule.pattern[i]
-                        if isInBounds(x + dx, y + dy) then
+                        if in_bound(x + dx, y + dy) then
                             -- if the tile is 'all' then it will match any tile
                             -- if the tile is a number then it will match that specific tile
                             -- if the tile is a negative number then it will match any tile except that specific tile
@@ -73,30 +64,23 @@ function createMap(rules, level)
                         local chance = rule.chance or 1
                         if rnd() < chance then
                             if rule.block then
-                                local blockHeight = #rule.block
-                                local blockWidth = #rule.block[1]
-                                local offX = rule.offsetX or 0
-                                local offY = rule.offsetY or 0
-                                local startX = x + offX
-                                local startY = y + offY
-                                for dy = 1, blockHeight do
-                                    for dx = 1, blockWidth do
-                                        ruledlevel[startX + dx - 1][startY + dy - 1] = rule.block[dy][dx]
+                                local blk_h, blk_w = #rule.block, #rule.block[1]
+                                local start_x, start_y = x + (rule.offsetX or 0), y + (rule.offsetY or 0)
+                                for dy = 1, blk_h do
+                                    for dx = 1, blk_w do
+                                        ruled_lvl[start_x + dx - 1][start_y + dy - 1] = rule.block[dy][dx]
                                         -- we don't want to check these tiles again
-                                        skip[startX + dx - 1][startY + dy - 1] = true
+                                        skip[start_x + dx - 1][start_y + dy - 1] = true
                                     end
                                 end
                             elseif rule.sprites then
-                                local sprite = getRandomItem(rule.sprites)
-                                ruledlevel[x][y] = sprite
+                                local sprite = get_rnd_item(rule.sprites)
+                                ruled_lvl[x][y] = sprite
                             end
-                            -- stopOnMatch is false only if it's not defined
-                            local stopOnMatch = true
-                            if rule.stopOnMatch != nil then
-                                stopOnMatch = rule.stopOnMatch
-                            end
-                            if stopOnMatch then
-                                -- if stopOnMatch is true then it will stop checking the other rules
+                            -- stop is false only if it's not defined
+                            local stop = rule.stop == nil or rule.stop
+                            if stop then
+                                -- if stop is true then it will stop checking the other rules
                                 break
                             end
                         end
@@ -106,16 +90,16 @@ function createMap(rules, level)
         end
     end
 
-    local function setTiles()
-        forEachArr2D(
+    local function make_tiles()
+        foreach_2darr(
             level, function(x, y)
-                setTileAt(x, y)
+                set_tl(x, y)
             end
         )
     end
 
-    function drawMiniMap(dx, dy)
-        forEachArr2D(
+    function draw_map(dx, dy)
+        foreach_2darr(
             level, function(x, y)
                 local color = level[x][y]
                 if color != nil and color != 0 then
@@ -125,14 +109,14 @@ function createMap(rules, level)
         )
     end
 
-    local function setMap()
-        forEachArr2D(
-            ruledlevel, function(x, y)
-                mset(x - 1, y - 1, ruledlevel[x][y])
+    local function set_map()
+        foreach_2darr(
+            ruled_lvl, function(x, y)
+                mset(x - 1, y - 1, ruled_lvl[x][y])
             end
         )
     end
 
-    setTiles()
-    setMap()
+    make_tiles()
+    set_map()
 end
