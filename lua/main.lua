@@ -12,38 +12,38 @@ foreach_2darr(
   end
 )
 
-function create_cave()
+function make_cave()
   make_map(caveRules, level)
 end
 
-function create_city()
+function make_city()
   make_map(cityRules, level)
 end
 
-function create_dung()
+function make_dung()
   make_map(dungeonRules, level)
 end
 
 _init = function()
-  createTiles()
+  make_tiles()
 end
 
-function createTiles()
+function make_tiles()
   if curr < 0 then curr = 2 end
   if curr > 2 then curr = 0 end
-  if curr == 0 then create_dung() end
-  if curr == 1 then create_city() end
-  if curr == 2 then create_cave() end
+  if curr == 0 then make_dung() end
+  if curr == 1 then make_city() end
+  if curr == 2 then make_cave() end
 end
 
 function nextRules()
   curr += 1
-  createTiles()
+  make_tiles()
 end
 
 function previousRules()
   curr -= 1
-  createTiles()
+  make_tiles()
 end
 
 -- the coordinates of the upper left corner of the camera
