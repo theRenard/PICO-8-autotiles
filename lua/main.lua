@@ -13,11 +13,11 @@ foreach_2darr(
 )
 
 function create_cave()
-  -- make_map(caveRules, level)
+  make_map(caveRules, level)
 end
 
 function create_city()
-  -- make_map(cityRules, level)
+  make_map(cityRules, level)
 end
 
 function create_dung()

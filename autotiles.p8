@@ -7,8 +7,8 @@ __lua__
 #include lua/debug.lua
 #include lua/utilities.lua
 #include lua/autotiles.lua
--- #include rules/cave.lua
--- #include rules/city.lua
+#include rules/cave.lua
+#include rules/city.lua
 #include rules/dungeon.lua
 #include lua/main.lua
 
