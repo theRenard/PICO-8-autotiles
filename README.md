@@ -1,6 +1,6 @@
-# Autotiles for Pico-8
+# Autotiles for PICO-8
 
-This repository contains an autotiles generator for Pico-8. It is a simple tool that allows you to create autotiles for your Pico-8 games in a declarative way.
+This repository contains an autotiles generator for PICO-8. It is a simple tool that allows you to create autotiles for your PICO-8 games in a declarative way.
 
 ![Autotiles example](assets/example.gif)
 
